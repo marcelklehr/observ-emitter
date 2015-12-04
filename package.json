@@ -1,0 +1,33 @@
+{
+  "name": "observ-emitter",
+  "version": "1.0.0",
+  "description": "An observable, atomic event emitter (can only emit one type of event)",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "atomic-emitter": "3.x"
+  },
+  "devDependencies": {
+    "mocha": "2.x",
+    "expect.js": "0.3.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcelklehr/observ-emitter.git"
+  },
+  "keywords": [
+    "event",
+    "emitter",
+    "atomic",
+    "value",
+    "geval"
+  ],
+  "author": "Marcel Klehr <mklehr@gmx.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcelklehr/observ-emitter/issues"
+  },
+  "homepage": "https://github.com/marcelklehr/observ-emitter#readme"
+}
