@@ -32,26 +32,30 @@ Counter.setup = function setup(app) {
 }
 
 Counter.render = function render(state) {
-  return h('div.Counter', extend(state.hooks.render, [ // <-- This is where the magin happens!
+  return h('div.Counter', extend(state.hooks.render, state, [ // <-- This is where the magin happens!
     h('span.Counter__count', String(state.count))
   ]))
 }
 
 function extend(hook, state, children) {
-  hook.emit(children)
+  hook(state, children)
   return children
 }
 
 // This is a plugin that extends the Counter component with a button for the user to increase
 // the counter value.
 function CounterIncrement(state) {
-  state.hooks.render.listen(function(children) {
+  state.hooks.render.listen(function(state, children) {
     children.push(
-      h('button.Counter__btn', {
-        'ev-click': state.hooks.increase
-      }, '+')
+      CounterIncrement.render(state)
     )
   })
+}
+
+CounterIncrement.render = function(state) {
+  return h('button.Counter__btn', {
+    'ev-click': state.hooks.increase
+  }, '+')
 }
 
 main(Counter
@@ -92,7 +96,7 @@ Add an event listener.
 Emit the event.
 
 ## Meta
-This is raw meat! It's a first implementation of an idea, I had. If this doesn't work for you, or you would like to report a problem (be it philosophical or technical) please file an issue!
+This is raw meat! It's a first implementation of an idea. If this doesn't work for you, or you would like to report a problem (be it philosophical or technical) please file an issue!
 
 ## Legal
 (c) 2015 by Marcel Klehr  
