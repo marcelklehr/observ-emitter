@@ -1,8 +1,34 @@
 # observ-emitter
-Similar to Raynos' [geval](https://github.com/Raynos/geval), with the following changes:
+This is a wrapper around [atomic emitter](https://github.com/marcelklehr/atomic-emitter), similar to Raynos' [geval](https://github.com/Raynos/geval), with the following changes:
 
  * proxies all arguments of the emit method to listeners
  * allows you to register listeners for change events of the emitter (e.g. when a listener is added/removed)
+
+## Usage
+
+```js
+var emitter = ObservEmitter()
+
+emitter(function() {
+  console.log('listeners changed!')
+})
+
+var remove = emitter.listen(function(value) {
+  console.log('emitted', value)
+})
+
+emitter.emit(42)
+
+remove()
+
+emitter.emit(7)
+```
+This will output:
+```
+listeners changed!
+emitted 42
+listeners changed!
+```
 
 ## Example
 You get an atomic value that you can pass around to add listeners and emit events. Render functions only get the emitter function, clearly cementing the unidirectional data flow -- you can't add listeners in your render functions.
