@@ -64,6 +64,12 @@ describe('observ-emitter', function() {
       done()
     }, 0)
   })
+  
+  it('should return emit fn if called without args', function() {
+    var emitter = Emitter()
+    
+    expect(emitter()).to.be(emitter.emit)
+  })
 
   it('should call change listeners when a listener is added', function(done) {
     var emit
@@ -71,8 +77,10 @@ describe('observ-emitter', function() {
     var values = [1,2,3]
       , result = []
     
-    emitter(function() {
+    var arg
+    emitter(function(newval) {
       called = true
+      arg = newval
     })
     
     var called = false
@@ -82,6 +90,7 @@ describe('observ-emitter', function() {
     
     setTimeout(function() {
       expect(called).to.equal(true)
+      expect(arg).to.be(emitter.emit)
       done()
     }, 0)
   })

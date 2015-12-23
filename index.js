@@ -33,7 +33,7 @@ function ObservEmitter(constructor) {
   
   function onchange() {
     for(var i=0; i<changeListeners.length; i++) {
-      changeListeners[i]()
+      changeListeners[i](emitter())
     }
   }
   
