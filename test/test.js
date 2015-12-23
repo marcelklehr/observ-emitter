@@ -71,11 +71,11 @@ describe('observ-emitter', function() {
     var values = [1,2,3]
       , result = []
     
-    var called = false
     emitter(function() {
       called = true
     })
     
+    var called = false
     emitter.listen(function(value) {
       result.push(value)
     })

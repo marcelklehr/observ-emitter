@@ -14,7 +14,6 @@ function ObservEmitter(constructor) {
     }
 
     changeListeners.push(changeListener)
-    onchange()
   }
   
   // emitter.emit(args...)
@@ -25,6 +24,7 @@ function ObservEmitter(constructor) {
   // emitter.listen(listener:Function) : Function
   emitter.listen = function(listener) {
     var removeListener = atomicEmitter(listener)
+    onchange()
     return function() {
       removeListener()
       onchange()
